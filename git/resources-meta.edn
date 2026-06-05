@@ -734,87 +734,87 @@
                  :chapter-duration "2:20"
                  :uploaded-at "2018-04-11"}}
 
-  "https://www.youtube.com/watch?v=mAFoROnOfHs&t=377s"
-  {:title "Git Architecture: Local vs. Remote"
-   :summary "A conceptual breakdown of Git's core workflow, explaining the journey of code from the working directory to the staging area, local repository, and finally the remote repository."
+ "https://www.youtube.com/watch?v=mAFoROnOfHs&t=377s"
+ {:title "Git Architecture: Local vs. Remote"
+  :summary "A conceptual breakdown of Git's core workflow, explaining the journey of code from the working directory to the staging area, local repository, and finally the remote repository."
 
-   ;; Diátaxis Classification
-   :diataxis-type {:how-to 0.0
-                   :tutorial 0.10
-                   :explanation 0.90
-                   :reference 0.0}
+  ;; Diátaxis Classification
+  :diataxis-type {:how-to 0.0
+                  :tutorial 0.10
+                  :explanation 0.90
+                  :reference 0.0}
 
-   ;; Content Format
-   :media-type #{:video}
-   :segment-info {:is-segment? true
-                  :segment-focus "Conceptual overview of Git's 3-stage local architecture and the purpose of remote cloud backups."}
+  ;; Content Format
+  :media-type #{:video}
+  :segment-info {:is-segment? true
+                 :segment-focus "Conceptual overview of Git's 3-stage local architecture and the purpose of remote cloud backups."}
 
-   ;; Concept Mapping
-   :concepts-matched ["Working Directory" "Staging Area\n(Index)" "Repository (.git)" "Remote Repository" "Collaboration" "Core Loop" "git commit" "git push" "git pull"]
-   :concepts-new ["Cloud Backup" "Digital Cabinet Analogy"]
-   :commands-mentioned ["git commit" "git push" "git pull"]
+  ;; Concept Mapping
+  :concepts-matched ["Working Directory" "Staging Area\n(Index)" "Repository (.git)" "Remote Repository" "Collaboration" "Core Loop" "git commit" "git push" "git pull"]
+  :concepts-new ["Cloud Backup" "Digital Cabinet Analogy"]
+  :commands-mentioned ["git commit" "git push" "git pull"]
 
-   ;; Prerequisites Mapping
-   :prerequisites-matched ["Philosophy" "Context"]
-   :prerequisites-new ["Basic Cloud Storage Concepts (Google Drive/OneDrive)"]
+  ;; Prerequisites Mapping
+  :prerequisites-matched ["Philosophy" "Context"]
+  :prerequisites-new ["Basic Cloud Storage Concepts (Google Drive/OneDrive)"]
 
-   :safety
-   {:level :safe
-    :reason "The segment is entirely conceptual and foundational, focusing on architectural understanding without demonstrating or suggesting any destructive commands."
-    :mentions-reflog? false}
+  :safety
+  {:level :safe
+   :reason "The segment is entirely conceptual and foundational, focusing on architectural understanding without demonstrating or suggesting any destructive commands."
+   :mentions-reflog? false}
 
-   :interface-type :mixed
-   :estimated-minutes 4
-   :straight-to-the-point :straight
-   :didactic-score 5
-   :experience-level :beginner
-   :visual-score 4
-   :production-quality 3
+  :interface-type :mixed
+  :estimated-minutes 4
+  :straight-to-the-point :straight
+  :didactic-score 5
+  :experience-level :beginner
+  :visual-score 4
+  :production-quality 3
 
-   ;; Metadata specific to the video resource
-   :youtube-data
-   {:title "Git & GitHub Crash Course for Beginners [2026]"
-    :channel-name "freeCodeCamp.org"
-    :channel-url "[https://www.youtube.com/@freeCodeCamp](https://www.youtube.com/@freeCodeCamp)"
-    :total-duration "01:21:13"
-    :chapter-name "Git Architecture: Local vs. Remote"
-    :chapter-starts-at "05:41"
-    :chapter-duration "03:56"
-    :uploaded-at "2024-11-20"}}
+  ;; Metadata specific to the video resource
+  :youtube-data
+  {:title "Git & GitHub Crash Course for Beginners [2026]"
+   :channel-name "freeCodeCamp.org"
+   :channel-url "[https://www.youtube.com/@freeCodeCamp](https://www.youtube.com/@freeCodeCamp)"
+   :total-duration "01:21:13"
+   :chapter-name "Git Architecture: Local vs. Remote"
+   :chapter-starts-at "05:41"
+   :chapter-duration "03:56"
+   :uploaded-at "2024-11-20"}}
 
-  "https://youtu.be/BIjrKuJGTxw?si=bypPA-5KJ4F5oEq0&t=145"
-  {:title "Git File States: Tracked, Staged & Committed"
-   :summary "A conceptual explanation of Git file states (untracked, tracked, committed, modified, and staged) using visual diagrams and a file explorer analogy to clarify the purpose of the staging area."
-   :diataxis-type {:how-to 0.0
-                   :tutorial 0.10
-                   :explanation 0.90
-                   :reference 0.0}
-   :media-type #{:video}
-   :segment-info {:is-segment? true
-                  :segment-focus "Conceptualizing file states and the staging area"}
-   :concepts-matched ["Working Directory" "Repository (.git)" "Staging Area\n(Index)" "Staging Area" "Snapshot" "Architecture" "Data Zones"]
-   :concepts-new ["Tracked Files" "Untracked Files" "File States" "Modified State"]
-   :commands-mentioned []
-   :prerequisites-matched ["Working Directory" "Repository (.git)"]
-   :prerequisites-new ["Basic OS File Management"]
-   :safety {:level :safe
-            :reason "The segment is entirely conceptual and explanatory, with no dangerous commands demonstrated or suggested."
-            :mentions-reflog? false}
-   :interface-type :gui
-   :estimated-minutes 5
-   :straight-to-the-point :straight
-   :didactic-score 5
-   :experience-level :beginner
-   :visual-score 4
-   :production-quality 3
-   :youtube-data {:title "Git Fundamentals: Staging area, repository, working directory, file states, and commits tutorial."
-                  :channel-name "The Modern Coder"
-                  :channel-url "[https://www.youtube.com/@TheModernCoder](https://www.youtube.com/@TheModernCoder)"
-                  :total-duration "9:37"
-                  :chapter-name "Git File States: Tracked, Staged & Committed"
-                  :chapter-starts-at "2:46"
-                  :chapter-duration "4:17"
-                  :uploaded-at "2023-11-20"}}
+ "https://youtu.be/BIjrKuJGTxw?si=bypPA-5KJ4F5oEq0&t=145"
+ {:title "Git File States: Tracked, Staged & Committed"
+  :summary "A conceptual explanation of Git file states (untracked, tracked, committed, modified, and staged) using visual diagrams and a file explorer analogy to clarify the purpose of the staging area."
+  :diataxis-type {:how-to 0.0
+                  :tutorial 0.10
+                  :explanation 0.90
+                  :reference 0.0}
+  :media-type #{:video}
+  :segment-info {:is-segment? true
+                 :segment-focus "Conceptualizing file states and the staging area"}
+  :concepts-matched ["Working Directory" "Repository (.git)" "Staging Area\n(Index)" "Staging Area" "Snapshot" "Architecture" "Data Zones"]
+  :concepts-new ["Tracked Files" "Untracked Files" "File States" "Modified State"]
+  :commands-mentioned []
+  :prerequisites-matched ["Working Directory" "Repository (.git)"]
+  :prerequisites-new ["Basic OS File Management"]
+  :safety {:level :safe
+           :reason "The segment is entirely conceptual and explanatory, with no dangerous commands demonstrated or suggested."
+           :mentions-reflog? false}
+  :interface-type :gui
+  :estimated-minutes 5
+  :straight-to-the-point :straight
+  :didactic-score 5
+  :experience-level :beginner
+  :visual-score 4
+  :production-quality 3
+  :youtube-data {:title "Git Fundamentals: Staging area, repository, working directory, file states, and commits tutorial."
+                 :channel-name "The Modern Coder"
+                 :channel-url "[https://www.youtube.com/@TheModernCoder](https://www.youtube.com/@TheModernCoder)"
+                 :total-duration "9:37"
+                 :chapter-name "Git File States: Tracked, Staged & Committed"
+                 :chapter-starts-at "2:46"
+                 :chapter-duration "4:17"
+                 :uploaded-at "2023-11-20"}}
 
  "https://youtu.be/ZDR433b0HJY?si=svvsTtOrsrQuUJ2y&t=2648"
  {:title "Git Internals: Trees, Index, Branches and HEAD"
@@ -913,6 +913,42 @@
                  :chapter-starts-at "17:45"
                  :chapter-duration "01:38"
                  :uploaded-at "2024-02-04"}}
+
+ "https://www.youtube.com/watch?v=tc4LnmhZusc&t=621s"
+ {:title "Git Reset: Soft, Mixed, and Hard Modes & Practical Scenarios"
+  :summary "An in-depth explanation of git reset's three core modes, followed by practical demonstrations on how to use them to amend history, move commits between branches, and split commits."
+  :diataxis-type {:how-to 0.40
+                  :tutorial 0.30
+                  :explanation 0.30
+                  :reference 0.0}
+  :media-type #{:video}
+  :segment-info {:is-segment? true
+                 :segment-focus "git reset mechanics and practical history rewriting"}
+  :concepts-matched ["git reset" "git reset --soft" "git reset --hard" "git commit" "git log" "git status" "git add" "git branch [name]" "git checkout [branch]" "HEAD" "Staging Area\n(Index)" "Working Directory" "Commit Object" "Tree Object" "Branch" "Relative Refs" "Plumbing"]
+  :concepts-new ["git reset --mixed" "Splitting Commits" "History Rewriting"]
+  :commands-mentioned ["git reset" "git log" "git cat-file" "git status" "git commit" "git add" "git branch" "git checkout"]
+  :prerequisites-matched ["Commit Object" "Plumbing" "git cat-file" "Staging Area\n(Index)" "Working Directory" "HEAD"]
+  :prerequisites-new ["Git Internal Object Database"]
+  :safety {:level :risky
+           :reason "Demonstrates git reset --hard, which overwrites the working directory and can lead to permanent loss of uncommitted data. Does not mention the reflog as a fallback mechanism."
+           :mentions-reflog? false}
+  :interface-type :cli
+  :estimated-minutes 18
+  :straight-to-the-point :straight
+  :didactic-score 5
+  :experience-level :intermediate
+  :visual-score 5
+  :production-quality 2
+
+  :youtube-data
+  {:title "Git Internals - Rewriting History and Overcoming Gitsasters - Part 1"
+   :channel-name "Brief"
+   :channel-url "[https://www.youtube.com/@briefchannel](https://www.youtube.com/@briefchannel)"
+   :total-duration "25:18"
+   :chapter-name "Git Reset"
+   :chapter-starts-at "7:09"
+   :chapter-duration "18:09"
+   :uploaded-at "2024-01-24"}}
 
 ;; -- StackOverflow
  "https://stackoverflow.com/questions/927358/how-do-i-undo-the-most-recent-local-commits-in-git/927386#927386"
@@ -15177,103 +15213,103 @@
                    :is-deprecated? false
                    :syntax-signatures-present? true
                    :has-configuration-options? true
-                   :related-references ["git-reset[1]" "git-restore[1]" "gitrevisions[7]" "git-rev-list[1]" "git-commit[1]" "git-merge[1]" "git-log[1]" "git-cherry-pick[1]" "git[1]"]}
+                   :related-references ["git-reset[1]" "git-restore[1]" "gitrevisions[7]" "git-rev-list[1]" "git-commit[1]" "git-merge[1]" "git-log[1]" "git-cherry-pick[1]" "git[1]"]}}
 
-  "https://git-scm.com/docs/git-reset#Documentation/git-reset.txt---soft"
-  {:title "git-reset --soft"
-   :summary "Leaves the working tree and index unchanged while moving HEAD, allowing for actions like squashing multiple commits into one."
-   :diataxis-type {:how-to 0.25
-                   :tutorial 0.0
-                   :explanation 0.15
-                   :reference 0.60}
-   :media-type #{:text :reference}
-   :segment-info {:is-segment? true
-                  :segment-focus "--soft"}
-   :concepts-matched ["HEAD" "git reset" "git reset --hard" "git reset --soft" "git add" "git commit" "git commit --amend" "git diff" "git pull" "git switch" "git stash" "git reflog" "Working Directory" "Staging Area\n(Index)" "Merge Conflicts"]
-   :concepts-new ["Pathspec" "Intent-to-add"]
-   :commands-mentioned ["git add" "git restore" "git commit" "git rebase" "git pull" "git switch" "git stash" "git reflog" "git diff" "git config"]
-   :prerequisites-matched ["Commit Object" "Branch" "Tree Object"]
-   :prerequisites-new ["Submodules"]
-   :safety {:level :dangerous
-            :reason "Documents the --hard flag which overwrites all files and directories, permanently discarding uncommitted local changes."
-            :mentions-reflog? true}
-   :interface-type :cli
-   :estimated-minutes 15
-   :straight-to-the-point :straight
-   :didactic-score 3
-   :experience-level :advanced
-   :visual-score 1
-   :production-quality 2
-   :reference-meta {:source-type "Man Page"
-                    :software-version "2.53.0"
-                    :is-deprecated? false
-                    :syntax-signatures-present? true
-                    :has-configuration-options? true
-                    :related-references ["git-add[1]" "git-restore[1]" "git[1]" "git-config[1]" "gitglossary[7]" "git-commit[1]" "git-rebase[1]" "git-stash[1]" "git-reflog[1]"]}}
+ "https://git-scm.com/docs/git-reset#Documentation/git-reset.txt---soft"
+ {:title "git-reset --soft"
+  :summary "Leaves the working tree and index unchanged while moving HEAD, allowing for actions like squashing multiple commits into one."
+  :diataxis-type {:how-to 0.25
+                  :tutorial 0.0
+                  :explanation 0.15
+                  :reference 0.60}
+  :media-type #{:text :reference}
+  :segment-info {:is-segment? true
+                 :segment-focus "--soft"}
+  :concepts-matched ["HEAD" "git reset" "git reset --hard" "git reset --soft" "git add" "git commit" "git commit --amend" "git diff" "git pull" "git switch" "git stash" "git reflog" "Working Directory" "Staging Area\n(Index)" "Merge Conflicts"]
+  :concepts-new ["Pathspec" "Intent-to-add"]
+  :commands-mentioned ["git add" "git restore" "git commit" "git rebase" "git pull" "git switch" "git stash" "git reflog" "git diff" "git config"]
+  :prerequisites-matched ["Commit Object" "Branch" "Tree Object"]
+  :prerequisites-new ["Submodules"]
+  :safety {:level :dangerous
+           :reason "Documents the --hard flag which overwrites all files and directories, permanently discarding uncommitted local changes."
+           :mentions-reflog? true}
+  :interface-type :cli
+  :estimated-minutes 15
+  :straight-to-the-point :straight
+  :didactic-score 3
+  :experience-level :advanced
+  :visual-score 1
+  :production-quality 2
+  :reference-meta {:source-type "Man Page"
+                   :software-version "2.53.0"
+                   :is-deprecated? false
+                   :syntax-signatures-present? true
+                   :has-configuration-options? true
+                   :related-references ["git-add[1]" "git-restore[1]" "git[1]" "git-config[1]" "gitglossary[7]" "git-commit[1]" "git-rebase[1]" "git-stash[1]" "git-reflog[1]"]}}
 
-  "https://git-scm.com/docs/git-reset#Documentation/git-reset.txt---hard"
-  {:title "git-reset --hard"
-   :summary "Overwrites all files and directories in the working tree and updates the index to match the specified commit, permanently discarding uncommitted changes"
-   :diataxis-type {:how-to 0.25
-                   :tutorial 0.0
-                   :explanation 0.15
-                   :reference 0.60}
-   :media-type #{:text :reference}
-   :segment-info {:is-segment? true
-                  :segment-focus "--hard"}
-   :concepts-matched ["HEAD" "git reset" "git reset --hard" "git reset --soft" "git add" "git commit" "git commit --amend" "git diff" "git pull" "git switch" "git stash" "git reflog" "Working Directory" "Staging Area\n(Index)" "Merge Conflicts"]
-   :concepts-new ["Pathspec" "Intent-to-add"]
-   :commands-mentioned ["git add" "git restore" "git commit" "git rebase" "git pull" "git switch" "git stash" "git reflog" "git diff" "git config"]
-   :prerequisites-matched ["Commit Object" "Branch" "Tree Object"]
-   :prerequisites-new ["Submodules"]
-   :safety {:level :dangerous
-            :reason "Documents the --hard flag which overwrites all files and directories, permanently discarding uncommitted local changes."
-            :mentions-reflog? true}
-   :interface-type :cli
-   :estimated-minutes 15
-   :straight-to-the-point :straight
-   :didactic-score 3
-   :experience-level :advanced
-   :visual-score 1
-   :production-quality 2
-   :reference-meta {:source-type "Man Page"
-                    :software-version "2.53.0"
-                    :is-deprecated? false
-                    :syntax-signatures-present? true
-                    :has-configuration-options? true
-                    :related-references ["git-add[1]" "git-restore[1]" "git[1]" "git-config[1]" "gitglossary[7]" "git-commit[1]" "git-rebase[1]" "git-stash[1]" "git-reflog[1]"]}}
+ "https://git-scm.com/docs/git-reset#Documentation/git-reset.txt---hard"
+ {:title "git-reset --hard"
+  :summary "Overwrites all files and directories in the working tree and updates the index to match the specified commit, permanently discarding uncommitted changes"
+  :diataxis-type {:how-to 0.25
+                  :tutorial 0.0
+                  :explanation 0.15
+                  :reference 0.60}
+  :media-type #{:text :reference}
+  :segment-info {:is-segment? true
+                 :segment-focus "--hard"}
+  :concepts-matched ["HEAD" "git reset" "git reset --hard" "git reset --soft" "git add" "git commit" "git commit --amend" "git diff" "git pull" "git switch" "git stash" "git reflog" "Working Directory" "Staging Area\n(Index)" "Merge Conflicts"]
+  :concepts-new ["Pathspec" "Intent-to-add"]
+  :commands-mentioned ["git add" "git restore" "git commit" "git rebase" "git pull" "git switch" "git stash" "git reflog" "git diff" "git config"]
+  :prerequisites-matched ["Commit Object" "Branch" "Tree Object"]
+  :prerequisites-new ["Submodules"]
+  :safety {:level :dangerous
+           :reason "Documents the --hard flag which overwrites all files and directories, permanently discarding uncommitted local changes."
+           :mentions-reflog? true}
+  :interface-type :cli
+  :estimated-minutes 15
+  :straight-to-the-point :straight
+  :didactic-score 3
+  :experience-level :advanced
+  :visual-score 1
+  :production-quality 2
+  :reference-meta {:source-type "Man Page"
+                   :software-version "2.53.0"
+                   :is-deprecated? false
+                   :syntax-signatures-present? true
+                   :has-configuration-options? true
+                   :related-references ["git-add[1]" "git-restore[1]" "git[1]" "git-config[1]" "gitglossary[7]" "git-commit[1]" "git-rebase[1]" "git-stash[1]" "git-reflog[1]"]}}
 
-  "https://git-scm.com/docs/git-reset"
-  {:title "git-reset"
-   :summary "Set HEAD or the index to a known state, allowing you to undo operations like commits, merges, and adds."
-   :diataxis-type {:how-to 0.25
-                   :tutorial 0.0
-                   :explanation 0.15
-                   :reference 0.60}
-   :media-type #{:text :reference}
-   :segment-info {:is-segment? false
-                  :segment-focus nil}
-   :concepts-matched ["HEAD" "git reset" "git reset --hard" "git reset --soft" "git add" "git commit" "git commit --amend" "git diff" "git pull" "git switch" "git stash" "git reflog" "Working Directory" "Staging Area\n(Index)" "Merge Conflicts"]
-   :concepts-new ["Pathspec" "Intent-to-add"]
-   :commands-mentioned ["git add" "git restore" "git commit" "git rebase" "git pull" "git switch" "git stash" "git reflog" "git diff" "git config"]
-   :prerequisites-matched ["Commit Object" "Branch" "Tree Object"]
-   :prerequisites-new ["Submodules"]
-   :safety {:level :dangerous
-            :reason "Documents the --hard flag which overwrites all files and directories, permanently discarding uncommitted local changes."
-            :mentions-reflog? true}
-   :interface-type :cli
-   :estimated-minutes 15
-   :straight-to-the-point :straight
-   :didactic-score 3
-   :experience-level :advanced
-   :visual-score 1
-   :production-quality 2
-   :reference-meta {:source-type "Man Page"
-                    :software-version "2.53.0"
-                    :is-deprecated? false
-                    :syntax-signatures-present? true
-                    :has-configuration-options? true
-                    :related-references ["git-add[1]" "git-restore[1]" "git[1]" "git-config[1]" "gitglossary[7]" "git-commit[1]" "git-rebase[1]" "git-stash[1]" "git-reflog[1]"]}}}
+ "https://git-scm.com/docs/git-reset"
+ {:title "git-reset"
+  :summary "Set HEAD or the index to a known state, allowing you to undo operations like commits, merges, and adds."
+  :diataxis-type {:how-to 0.25
+                  :tutorial 0.0
+                  :explanation 0.15
+                  :reference 0.60}
+  :media-type #{:text :reference}
+  :segment-info {:is-segment? false
+                 :segment-focus nil}
+  :concepts-matched ["HEAD" "git reset" "git reset --hard" "git reset --soft" "git add" "git commit" "git commit --amend" "git diff" "git pull" "git switch" "git stash" "git reflog" "Working Directory" "Staging Area\n(Index)" "Merge Conflicts"]
+  :concepts-new ["Pathspec" "Intent-to-add"]
+  :commands-mentioned ["git add" "git restore" "git commit" "git rebase" "git pull" "git switch" "git stash" "git reflog" "git diff" "git config"]
+  :prerequisites-matched ["Commit Object" "Branch" "Tree Object"]
+  :prerequisites-new ["Submodules"]
+  :safety {:level :dangerous
+           :reason "Documents the --hard flag which overwrites all files and directories, permanently discarding uncommitted local changes."
+           :mentions-reflog? true}
+  :interface-type :cli
+  :estimated-minutes 15
+  :straight-to-the-point :straight
+  :didactic-score 3
+  :experience-level :advanced
+  :visual-score 1
+  :production-quality 2
+  :reference-meta {:source-type "Man Page"
+                   :software-version "2.53.0"
+                   :is-deprecated? false
+                   :syntax-signatures-present? true
+                   :has-configuration-options? true
+                   :related-references ["git-add[1]" "git-restore[1]" "git[1]" "git-config[1]" "gitglossary[7]" "git-commit[1]" "git-rebase[1]" "git-stash[1]" "git-reflog[1]"]}}
 
  "https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-workingtree"
  {:title "Glossary Definition: Working Tree"
@@ -16184,6 +16220,4 @@
    :repository-url nil
    :step-count 13
    :has-sample-code? true
-   :series-name nil}}
-
- }
+   :series-name nil}}}

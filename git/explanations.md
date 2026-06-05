@@ -1,3 +1,72 @@
+{{"Commit Object v2"}}
+Posso usar esse tipo de Node pra abstrair relações..
+
+{{"git checkout"}}
+A navigation command that updates the `HEAD` pointer to the specified branch, and then overwrites your Index and Working Directory files to exactly match that branch's latest commit.
+
+{{"git checkout [hash]"}}
+A command used for "time travel." By targeting a specific commit hash instead of a branch name, it places your repository into a **Detached HEAD** state, allowing you to safely inspect or run old code without altering history.
+
+{{"git commit --amend"}}
+A command that allows you to seamlessly modify the most recent commit. Architecturally, Git's strict rule of immutability means this command cannot actually "edit" the existing commit. Instead, it takes whatever new changes are currently in the Staging Area, merges them with the contents of the previous commit, and forges a brand new Commit Object to replace the old one. This provides a highly safe way to fix a typo or add any other extra content.
+
+```curated-resources
+https://learngitbranching.js.org/?level=mixed2
+https://stackoverflow.com/questions/927358/how-do-i-undo-the-most-recent-local-commits-in-git/927386#927386?alternative-strategy
+https://git-scm.com/docs/git-commit#Documentation/git-commit.txt---amend
+https://git-scm.com/book/en/v2/Git-Tools-Rewriting-History#:~:text=Changing%20the%20Last%20Commit
+```
+
+{{"git merge --ff-only"}}
+A strict way to combine history that **refuses** to create a merge commit. It only moves the branch pointer forward if the history is linear (a straight line).
+
+{{"git fetch"}}
+Downloads new data (commits, files, refs) from a remote repository but **does not** integrate it into your working files. It updates your **Remote Tracking Branches**.
+
+{{"git merge"}}
+An integration command that takes the history of a specified branch and fuses it into your currently active branch. Depending on the branch history, it will either perform a **Fast-Forward Merge** or forge a new, multi-parent "merge commit."
+
+{{"Local Repository (.git)"}}
+The hidden folder (named .git) inside your project. It is the database that stores all the snapshots, commits, and configuration settings. If you delete this folder, you lose the project's history.
+
+```curated-resources
+https://git-scm.com/docs/gitrepository-layout
+https://www.youtube.com/watch?v=mAFoROnOfHs&t=377s
+https://stackoverflow.com/a/2003515
+https://stackoverflow.com/a/37320788
+https://git-scm.com/book/en/v2/Getting-Started-What-is-Git%3F#_nearly_every_operation_is_local
+https://git-scm.com/book/en/v2/Git-Basics-Getting-a-Git-Repository#_initializing_a_repository_in_an_existing_directory
+https://git-scm.com/book/en/v2/Git-on-the-Server-Getting-Git-on-a-Server#_getting_git_on_a_server
+```
+
+
+{{".git/index"}}
+The **physical implementation** of the Staging Area. It is a single **binary file** located at .git/index that maintains a high-speed list of every file in your project, along with their permissions and checksums. When you run git add, you are updating this file; when you run git commit, Git creates the new snapshot exclusively from this list.
+
+{{"Cache"}}
+The **original name** for the Staging Area in early versions of Git. It refers to how the Index "caches" the file contents to speed up operations. While the term is largely obsolete in conversation, it survives in low-level command flags like git diff \--cached or git rm \--cached.
+
+{{"Staging Area"}}
+The **conceptual workspace** where you craft your next commit. Unlike a simple "save" button, it allows you to pick and choose specific changes—even parts of a single file—to include in a snapshot while leaving unfinished work behind. It serves as a **draft** or **proposal** for the next commit.
+
+```curated-resources
+https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-index
+https://git-scm.com/book/en/v2/Getting-Started-What-is-Git%3F#_the_three_states
+https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository#_recording_changes_to_the_repository
+https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository#_staging_modified_files
+https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository#_skipping_the_staging_area
+https://git-scm.com/book/en/v2/Git-Basics-Undoing-Things#_unstaging
+https://stackoverflow.com/a/62569076
+https://www.youtube.com/watch?v=tc4LnmhZusc&t=621s
+```
+
+
+{{"Snapshot"}}
+A complete record of what all the files in your project looked like at a specific moment in time. Unlike a backup, it is efficient and only stores files that have changed, reusing the ones that haven't.
+
+{{"Tree Object"}}
+The physical, immutable data structure stored in the `.git/objects` database representing a saved directory state. It explicitly lists file names, permissions, and the corresponding SHA-1 hashes of the Blobs and sub-Trees it contains.
+
 {{".git/config"}}
 The local configuration file for the repository. It stores project-specific settings, such as remote server URLs (like `origin`), branch tracking linkages, and user overrides that take precedence over global settings.
 
@@ -15,13 +84,10 @@ https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks#_git_hooks
 https://git-scm.com/docs/githooks
 ```
 
-{{".git/index (Index)"}}
-The **physical implementation** of the Staging Area. It is a single **binary file** located at .git/index that maintains a high-speed list of every file in your project, along with their permissions and checksums. When you run git add, you are updating this file; when you run git commit, Git creates the new snapshot exclusively from this list.
-
 {{".git/MERGE_HEAD"}}
 A temporary **pseudoref** created automatically when a merge conflict occurs. It stores the hash of the incoming commit being merged, allowing Git to remember the target state while you manually resolve the conflicts in the Working Directory.
 
-{{".git/objects"}}
+{{".git/objects/"}}
 The core, immutable database directory. It physically stores every Snapshot, metadata file, and raw file content (Commits, Trees, Blobs, and Tags), cryptographically organized by their SHA-1 hashes.
 
 {{".gitignore"}}
@@ -60,9 +126,6 @@ https://git-scm.com/docs/git-branch
 ```
 
 
-{{"Cache"}}
-The **original name** for the Staging Area in early versions of Git. It refers to how the Index "caches" the file contents to speed up operations. While the term is largely obsolete in conversation, it survives in low-level command flags like git diff \--cached or git rm \--cached.
-
 {{"Commit Object"}}
 Metadata wrapper that permanently binds a specific snapshot of a project's state to a location in the repository's historical timeline.
 
@@ -76,8 +139,6 @@ gpgsig -----BEGIN PGP SIGNATURE-----
 
  iQIzBA...
  -----END PGP SIGNATURE-----
-
-Select node when click Node Link
 ```
 
 ## Resources
@@ -90,15 +151,13 @@ https://dev.to/__whyd_rf/a-deep-dive-into-git-internals-blobs-trees-and-commits-
 ```
 
 
-{{"Commit Object v2"}}
-Posso usar esse tipo de Node pra abstrair relações..
-
 {{"DAG (Directed Acyclic Graph)"}}
 The **DAG (Directed Acyclic Graph)** represents Git's timeline. Every **Commit Object** is a node pointing backward to its parent(s). It is *directed* (child points to parent) and *acyclic* (no infinite loops). This mathematical model safely enables non-linear workflows, like branching and merging, by ensuring history always resolves to an initial root commit.
 
 ```curated-resources
 https://git-scm.com/book/en/v2/Git-Internals-Git-Objects#_git_commit_objects
 https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-DAG
+https://youtu.be/ZDR433b0HJY?si=svvsTtOrsrQuUJ2y&t=2648
 ```
 
 {{"Dangling Blob"}}
@@ -170,12 +229,6 @@ A highly detailed, "very verbose" inspection command. It lists all local branche
 {{"git cat-file"}}
 A low-level command used to examine the type and content of Git objects directly from the database.
 
-{{"git checkout"}}
-A navigation command that updates the `HEAD` pointer to the specified branch, and then overwrites your Index and Working Directory files to exactly match that branch's latest commit.
-
-{{"git checkout [hash]"}}
-A command used for "time travel." By targeting a specific commit hash instead of a branch name, it places your repository into a **Detached HEAD** state, allowing you to safely inspect or run old code without altering history.
-
 {{"git checkout / git switch"}}
 Commands that update **HEAD** to point to a different branch or commit. switch is the modern, safer version strictly for changing branches, while checkout is the older, multi-purpose tool.
 
@@ -203,23 +256,10 @@ https://git-scm.com/docs/git-clone
 {{"git commit"}}
 A command that takes everything currently in the Staging Area and saves it permanently as a Commit Object in the Repository.
 
-{{"git commit --amend"}}
-A command that allows you to seamlessly modify the most recent commit. Architecturally, Git's strict rule of immutability means this command cannot actually "edit" the existing commit. Instead, it takes whatever new changes are currently in the Staging Area, merges them with the contents of the previous commit, and forges a brand new Commit Object to replace the old one. This provides a highly safe way to fix a typo or add any other extra content.
-
-```curated-resources
-https://learngitbranching.js.org/?level=mixed2
-https://stackoverflow.com/questions/927358/how-do-i-undo-the-most-recent-local-commits-in-git/927386#927386?alternative-strategy
-https://git-scm.com/docs/git-commit#Documentation/git-commit.txt---amend
-https://git-scm.com/book/en/v2/Git-Tools-Rewriting-History#:~:text=Changing%20the%20Last%20Commit
-```
-
 {{"git diff"}}
 A command that compares two **states** (e.g., Working Directory vs. Staging Area, or Branch A vs. Branch B) and outputs the line-by-line differences. It dives into the files themselves to show you the exact additions (usually in green with a `+`) and deletions (usually in red with a `-`).
 
 You can pass two branch names to the command (e.g., `git diff main..feature-branch`) to safely preview how two timelines have diverged before you attempt to merge them. This allows you to review a colleague's work (or an experimental branch) in its entirety before bringing it into your main codebase.
-
-{{"git fetch"}}
-Downloads new data (commits, files, refs) from a remote repository but **does not** integrate it into your working files. It updates your **Remote Tracking Branches**.
 
 {{"git fetch --prune"}}
 A maintenance command that syncs your local database with the server while simultaneously cleaning up dead references. It downloads the latest data, but also **automatically deletes any local remote-tracking branches** (e.g., `origin/old-feature`) if those branches have already been deleted on the remote server.
@@ -249,12 +289,6 @@ https://git-scm.com/book/en/v2/Git-Tools-Searching#_line_log_search
 
 {{"git ls-files"}}
 A low-level command to view the raw content of the **Index** (Staging Area).
-
-{{"git merge"}}
-An integration command that takes the history of a specified branch and fuses it into your currently active branch. Depending on the branch history, it will either perform a **Fast-Forward Merge** or forge a new, multi-parent "merge commit."
-
-{{"git merge --ff-only"}}
-A strict way to combine history that **refuses** to create a merge commit. It only moves the branch pointer forward if the history is linear (a straight line).
 
 {{"git pull"}}
 A convenience command that runs [git fetch](<node:git fetch>) followed immediately by [git merge](<node:git merge>). It updates your current branch with changes from the remote.
@@ -341,6 +375,7 @@ A powerful command that moves the **HEAD** and Branch pointer backward to a prev
 3. **\--hard**: Moves HEAD → Updates the Staging Area → Overwrites the Working Directory.
 
 ```curated-resources
+https://www.youtube.com/watch?v=tc4LnmhZusc&t=621s
 https://stackoverflow.com/questions/927358/how-do-i-undo-the-most-recent-local-commits-in-git/927386#927386
 https://stackoverflow.com/questions/927358/how-do-i-undo-the-most-recent-local-commits-in-git/927386#comment6443962_927386
 https://stackoverflow.com/a/348234
@@ -506,40 +541,8 @@ https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration#_receive_denyde
 {{"Remote-Tracking Branch"}}
 A local, read-only cache of a branch's state on a remote server. You cannot commit to these branches directly; they only move forward when you explicitly synchronize with the network using `git fetch` or `git pull`.
 
-{{"Repository (.git)"}}
-The hidden folder (named .git) inside your project. It is the database that stores all the snapshots, commits, and configuration settings. If you delete this folder, you lose the project's history.
-
-```curated-resources
-https://git-scm.com/docs/gitrepository-layout
-https://www.youtube.com/watch?v=mAFoROnOfHs&t=377s
-https://stackoverflow.com/a/2003515
-https://stackoverflow.com/a/37320788
-https://git-scm.com/book/en/v2/Getting-Started-What-is-Git%3F#_nearly_every_operation_is_local
-https://git-scm.com/book/en/v2/Git-Basics-Getting-a-Git-Repository#_initializing_a_repository_in_an_existing_directory
-https://git-scm.com/book/en/v2/Git-on-the-Server-Getting-Git-on-a-Server#_getting_git_on_a_server
-```
-
-
 {{"SHA-1 Hash"}}
 A 40-character cryptographic string generated from the contents of a file or commit. It acts as the permanent, mathematically unique ID for every Object in the Git database.
-
-{{"Snapshot"}}
-A complete record of what all the files in your project looked like at a specific moment in time. Unlike a backup, it is efficient and only stores files that have changed, reusing the ones that haven't.
-
-{{"Staging Area"}}
-The **conceptual workspace** where you craft your next commit. Unlike a simple "save" button, it allows you to pick and choose specific changes—even parts of a single file—to include in a snapshot while leaving unfinished work behind. It serves as a **draft** or **proposal** for the next commit.
-
-```curated-resources
-https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-index
-https://youtu.be/ZDR433b0HJY?si=svvsTtOrsrQuUJ2y&t=2648
-https://git-scm.com/book/en/v2/Getting-Started-What-is-Git%3F#_the_three_states
-https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository#_recording_changes_to_the_repository
-https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository#_staging_modified_files
-https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository#_skipping_the_staging_area
-https://git-scm.com/book/en/v2/Git-Basics-Undoing-Things#_unstaging
-https://stackoverflow.com/a/62569076
-```
-
 
 {{"Staging Area (Index)"}}
 The **intermediate zone** between your working directory and the repository. It acts as a "loading dock" where you review and prepare specific changes before permanently recording them in the history. It combines the conceptual workflow (**Staging Area**) with the technical implementation (**Index**).
@@ -548,30 +551,38 @@ One of the "Three Trees", others are the [Working Directory](<node:Working Direc
 
 ```curated-resources
 https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-index
-https://youtu.be/ZDR433b0HJY?si=svvsTtOrsrQuUJ2y&t=2648
 https://git-scm.com/book/en/v2/Getting-Started-What-is-Git%3F#_the_three_states
 https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository#_recording_changes_to_the_repository
 https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository#_staging_modified_files
 https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository#_skipping_the_staging_area
 https://git-scm.com/book/en/v2/Git-Basics-Undoing-Things#_unstaging
 https://stackoverflow.com/a/62569076
+https://www.youtube.com/watch?v=tc4LnmhZusc&t=621s
 ```
 
 
 {{"Tag (Lightweight)"}}
-A fixed, immutable **pointer** to a specific commit. Unlike a branch, it does not move. It acts as a "bookmark" for important moments like releases (v1.0).
+A fixed, static **pointer** to a specific commit. Structurally identical to a branch, but it does not move. It acts as a "bookmark" for important moments like releases (v1.0).
 
 {{"Tag Object (Annotated)"}}
 A full Git object containing the tagger’s name, email, date, and message. It points to a commit and is stored in the database.
+
+## Example
+```
+$ git cat-file -p test-tag
+object ba79ce9ff16b215f3bcd328aaff43fe481792a77
+type commit
+tag test-tag
+tagger João Paulo <joao.paulo@vouch.io> 1779197726 -0300
+
+test tag
+```
 
 {{"Tracking Branch"}}
 A local, read-only branch (like origin/main) that represents the **last known state** of a branch on the remote server. You cannot commit to it directly.
 
 {{"Tree"}}
 The conceptual representation of a directory (folder) within Git's architecture. It serves to group files together and can nest other directories within it to map out your file system.
-
-{{"Tree Object"}}
-The physical, immutable data structure stored in the `.git/objects` database representing a saved directory state. It explicitly lists file names, permissions, and the corresponding SHA-1 hashes of the Blobs and sub-Trees it contains.
 
 {{"Upstream"}}
 The link between a local branch and a remote branch. If main has origin/main as its upstream, git push knows where to send the code without arguments.
@@ -647,35 +658,44 @@ Usually, [git push](<node:git push>) will refuse to update a branch that is not 
 {{"git add -p"}}
 `git add -p` (or `--patch`) enables interactive staging. Instead of staging whole files, Git presents your changes block by block (called **hunks**). You can choose to stage (`y`), skip (`n`), or split (`s`) each individual hunk. This surgical precision allows you to separate unrelated edits within the exact same file into clean, independent, and atomic commits.
 
-{{".git/config" -"stored in"-> "Repository (.git)"}}
+{{"git reset --mixed"}}
+The default behavior of [git reset](<node:git reset>).
+
+{{".git/config" -"stored in"-> "Repository"}}
 Coming soon..
 
 {{".git/FETCH_HEAD" -"is a"-> "pseudoref"}}
 
 
-{{".git/HEAD" -"stored in"-> "Repository (.git)"}}
+{{".git/HEAD" -"stored in"-> "Repository"}}
 Coming soon..
 
-{{".git/hooks" -"stored in"-> "Repository (.git)"}}
+{{".git/hooks" -"stored in"-> "Repository"}}
 The hooks folder is created automatically inside the hidden Git database when you run `git init`.
 
-{{".git/index (Index)" -"formerly known as"-> "Cache"}}
-In the very early days of Git, the staging area was called the "Cache" because it cached the file contents before writing them to the database. You still see this legacy name in commands like `git diff --cached` (which does the same thing as `git diff --staged`).
-
-{{".git/index (Index)" -"stored in"-> "Repository (.git)"}}
+{{".git/index" -"stored in"-> "Repository"}}
 Coming soon..
-
-{{".git/index (Index)" -"represents proposed"-> "Snapshot"}}
-The Staging Area acts as a preview or a draft. Whatever is in the Staging Area right now is exactly what the Snapshot will look like if you run the commit command.
 
 {{".git/MERGE_HEAD" -"is a"-> "pseudoref"}}
 
 
-{{".git/objects" -"stored in"-> "Repository (.git)"}}
+{{".git/objects/" -"stored in"-> "Repository"}}
 Coming soon..
 
 {{".gitignore" -"filters"-> "git status"}}
 Patterns in this file prevent Untracked Files from showing up in status.
+
+{{".gitignore" -"filters"-> "git add"}}
+
+
+{{">>Survival Commands" -""-> "Staging Area (Index)"}}
+
+
+{{">>Survival Commands" -""-> "Working Directory"}}
+
+
+{{">>Survival Commands" -""-> "Local Repository"}}
+
 
 {{"❓ Delete local and remote branches" -"solved by"-> "git branch -d"}}
 Assuming it's "safe" to delete the branch without losing work, i.e., the branch was merged already, check the following solution:
@@ -709,452 +729,6 @@ Before making a permanent decision, it is wise to review exactly what unique wor
 
 Run `git log main..<branch-name> --oneline` and `git diff main..<branch-name>`.
 
-{{"❓ Pull vs Fetch" -"solved by"-> "git pull"}}
-Assuming you want to integrate the remote changes right away (and not analize them first) and also assuming you have a "clean" Working Directory (all changes committed), you can check the following solution:
-
-[git pull](<node:git pull>)
-
-{{"❓ Pull vs Fetch" -"solved by"-> "git fetch"}}
-To download remote changes and analyze them before integrating into your local branch, check the following solution:
-
-[git fetch](<node:git fetch>)
-
-{{"❓ Pull vs Fetch" -"solved by"-> "git commit"}}
-As you want to save your currently changes before integrating remote changes, follow the pattern [git commit](<node:git commit>) -> [git fetch](<node:git fetch>) -> [git merge](<node:git merge>).
-
-{{"❓ Pull vs Fetch" -"solved by"-> "git reset"}}
-As you don't want to keep your local changes, you can discard them with [git reset](<node:git reset>), and assuming no other changes were made in the branch, you can run [git pull](<node:git pull>) to download and integrate remote changes.
-
-{{"❓ Pull vs Fetch" -"solved by"-> "git stash"}}
-To temporary "hide" your local changes, you can use [git stash](<node:git stash>), then use [git fetch](<node:git fetch>) to analyze changes in the remote branch.
-
-{{"❓ Pull vs Fetch" -"solved by"-> "Feature Branching"}}
-When multiple people work directly on a shared branch, the repository acts like a single, highly crowded workbench. You are constantly having to move your half-built changes aside (stashing) just to accept the latest changes from someone else (pulling), which is prone to errors.
-
-Adopt the following workflow to work in isolation and have controlled integrations:
-
-[Feature Branching Workflow](<node:Feature Branching>)
-
-{{"❓ Undo last commits" -"solved by"-> "git commit --amend"}}
-If you just want to include more changes into the last commit, check the following node for a solution:
-
-[git commit --amend](<node:git commit --amend>)
-
-{{"❓ Undo last commits" -"solved by"-> "git push -f"}}
-If the commit you want to change is already pushed, but rewriting history is safe, then check the following node for a solution:
-
-[git push -f](<node:git push -f>)
-
-{{"❓ Undo last commits" -"solved by"-> "git reset"}}
-If the history can be changed, check the following node for a solution:
-
-[git reset](<node:git reset>)
-
-{{"❓ Undo last commits" -"solved by"-> "git reset --hard"}}
-To undo the commit and permanently delete commit's changes, check the following node for a solution:
-
-[git reset --hard](<node:git reset --hard>)
-
-{{"❓ Undo last commits" -"solved by"-> "git reset --soft"}}
-If you want to undo the commit and keeep the changes in your index, check the following node for a solution:
-
-[git reset --soft](<node:git reset --soft>)
-
-{{"❓ Undo last commits" -"solved by"-> "git revert"}}
-Assuming you have already pushed these commits to a remote server in a branch others are working on, check the following node for a solution:
-
-[git revert](<node:git revert>)
-
-{{"Atomic Commits" -"facilitates"-> "git cherry-pick"}}
-Small, focused commits are incredibly easy to copy-paste onto other branches compared to massive "end of day" commits.
-
-{{"Atomic Commits" -"facilitates"-> "git revert"}}
-If a commit does only one specific thing (atomic), reverting it later will cleanly undo that feature without breaking unrelated code.
-
-{{"Branch" -"points to"-> "Commit Object"}}
-A branch is just a text file containing the hash of the latest commit.
-
-{{"Commit Object" -"stored in"-> ".git/objects"}}
-Every saved snapshot is compressed, hashed, and physically stored inside the `.git/objects` subfolder of the repository.
-
-{{"Commit Object" -"points to"-> "Commit Object"}}
-Each commit (except the first) points to its parent, forming the DAG.
-
-{{"Commit Object" -"contains"-> "Snapshot"}}
-Every commit holds exactly one snapshot. The commit acts as the envelope (with the stamp and address), and the snapshot is the letter inside.
-
-{{"Commit Object" -"contains"-> "Tree Object"}}
-Coming soon..
-
-{{"Commit Object" -"requires"-> "user.email"}}
-Similar to the name, an email is mandatory metadata for every commit to ensure the history can be attributed to a real person.
-
-{{"Commit Object" -"requires"-> "user.name"}}
-Git will not let you save a commit without an author name. It needs this to permanently sign the work.
-
-{{"DAG (Directed Acyclic Graph)" -"is composed of"-> "Commit Object"}}
-The Directed Acyclic Graph is the structure formed by the parent linkages.
-
-{{"Dangling Commit" -"contains"-> "Dangling Tree"}}
-If a Dangling Commit is the only object in the database referencing a specific Tree Object, that Tree will also effectively become dangling once the commit is purged.
-
-{{"Feature Branching" -"relies on"-> "Branch"}}
-The entire methodology is built on Git's ability to create lightweight, disposable pointers for parallel development.
-
-{{"Feature Branching" -"avoids"-> "Merge Conflicts"}}
-(Or rather, delays and isolates them). It prevents developers from constantly stepping on each other's toes in the main branch on every single commit.
-
-{{"git add" -"calculates the"-> "Blob Object"}}
-Before anything is moved, Git performs a hash calculation. `git add` **calculates the SHA-1 hash** of the file’s current content to create a **Blob Object**. If the file's content has changed since the last add, a new unique hash is generated to represent that specific version of the data.
-
-{{"git add" -"updates"-> "Staging Area (Index)"}}
-This command takes the file as it looks right now in your workspace and copies that version into the draft space (Index), making it ready to be saved.
-
-{{"git add" -"add Blob and file path in"-> "Staging Area (Index)"}}
-Once the Blob is created, Git must remember which file it belongs to. git add **records the Blob's hash and the file's path** together within the **Staging Area (Index)**. This creates the link between the "untyped" data in the Blob and the actual filename used in your directory structure.
-
-{{"git add" -"promotes changes from"-> "Working Directory"}}
-When you run git add, you are **promoting changes** from your Working Directory (the files you see and edit) to the Staging Area. This signals to Git that these specific modifications are ready to be packaged into the next snapshot of the project.
-
-{{"git add" -"can create"-> "Dangling Blob"}}
-If you stage a file, edit it, and stage it again, the first generated Blob object loses its reference in the Staging Area and becomes dangling.
-
-{{"git bisect" -"navigates"-> "DAG (Directed Acyclic Graph)"}}
-
-
-{{"git branch" -"creates"-> "Branch"}}
-Creates a new pointer to the current commit.
-
-{{"git branch -d" -"variant of"-> "git branch"}}
-
-
-{{"git branch -D" -"variant of"-> "git branch"}}
-
-
-{{"git branch -r" -"lists"-> "refs/remotes/"}}
-The specific inspection command used to view all your Remote-Tracking Branches without showing local branches.
-
-{{"git branch -vv" -"inspects"-> "Upstream Branch"}}
-This specific flag (very verbose) lists all your local branches and explicitly prints the name of the upstream branch they are tethered to, if one exists.
-
-{{"git checkout" -"updates"-> "HEAD"}}
-Moves the HEAD pointer to the specified branch.
-
-{{"git checkout [hash]" -"triggers"-> "Detached HEAD"}}
-Moving HEAD to a specific commit disconnects it from any branch.
-
-{{"git cherry-pick" -"creates new"-> "Commit Object"}}
-
-
-{{"git clone" -"downloads from"-> "Remote Repository"}}
-Sets up the 'origin' configuration pointing to the URL.
-
-{{"git clone" -"creates"-> "Local Repository"}}
-
-
-{{"git clone" -"configures"-> "origin"}}
-
-
-{{"git clone" -"populates"-> "Working Directory"}}
-
-
-{{"git commit" -"creates"-> "Commit Object"}}
-This action freezes the current Staging Area into a permanent object in the database, generating a unique ID (hash) for it.
-
-{{"git commit --amend" -"replaces"-> "Commit Object"}}
-Creates a NEW commit (new hash) that replaces the previous tip.
-
-{{"git commit --amend" -"replaces"-> "Commit Object"}}
-It takes the current Staging Area and the parent's metadata to forge a completely new Commit Object, making the old one obsolete.
-
-{{"git commit --amend" -"respects"-> "Immutability"}}
-Even though it feels like you are editing a save file, the command strictly obeys Git's read-only database rules by leaving the original object structure intact and building a completely new one.
-
-{{"git commit --amend" -"consumes"-> "Staging Area (Index)"}}
-The command actively looks at your draft space. Any files you have newly staged will be permanently baked into the replacement commit alongside the original files.
-
-{{"git commit --amend" -"can creates"-> "Dangling Commit"}}
-Because amending replaces the previous tip of the branch with a new commit, the original, replaced commit is instantly orphaned and becomes dangling.
-
-{{"git commit --no-verify" -"bypasses"-> ".git/hooks"}}
-This command flag allows a user to intentionally skip the client-side commit hooks during an emergency fix.
-
-{{"git diff" -"compares"-> "Working Directory"}}
-By default (with no extra flags), this command shows all un-staged modifications by comparing your active workspace directly against the Index.
-
-{{"git fetch" -"creates / updates"-> ".git/FETCH_HEAD"}}
-Logs the exact commit hashes that were just downloaded. This is the crucial, hidden bridge file used by git pull.
-
-{{"git fetch" -"updates"-> "origin/main"}}
-Moves this specific tracking pointer forward to perfectly mirror the new state of the server.
-
-{{"git fetch" -"downloads from"-> "Remote Repository"}}
-Retrieves new commits and data from the remote server, but strictly stops there.
-
-{{"git fetch" -"updates"-> "Tracking Branch"}}
-Downloads data and moves 'origin/main' to match the server.
-
-{{"git fetch --prune" -"variant of"-> "git fetch"}}
-
-
-{{"git gc" -"cleans up"-> "git reflog"}}
-
-
-{{"git gc" -"permanently deletes"-> "Dangling Object"}}
-When run, the garbage collector scans for objects that have been completely unreachable for longer than the 30-day grace period, and physically deletes them from your hard drive.
-
-{{"git gc" -"compresses into"-> "Packfile"}}
-During its optimization routine, the garbage collector takes all "live" (reachable) loose objects and squashes them into a highly efficient Packfile.
-
-{{"git init" -"creates"-> "Repository (.git)"}}
-Running this command physically generates the database folder on your computer. Before this, you just have files; after this, you have a Git project.
-
-{{"git log" -"reads"-> "Commit Object"}}
-This command opens the database and reads the metadata (author, date, message) from the saved commits to show you the project's history.
-
-{{"git log" -"reads"-> "Commit Object"}}
-It extracts and displays the metadata stored inside the commit (author, date, message, and hash) without altering it.
-
-{{"git log" -"traverses"-> "DAG (Directed Acyclic Graph)"}}
-To build the timeline, the command strictly follows the parent-pointers mathematically linking the commits together from newest to oldest.
-
-{{"git merge" -"resolves via"-> "Merge Conflicts"}}
-If automatic merging fails, the user must manually resolve the overlapping edits.
-
-{{"git merge" -"combines"-> "origin/main"}}
-Takes the isolated tracking branch and attempts to fuse its history into your current local main.
-
-{{"git merge" -"utilizes"-> "Staging Area"}}
-If the merge results in a conflict, Git uses the Index to store the base, local, and remote versions of the file until you resolve it.
-
-{{"git merge --ff-only" -"allow only"-> "Fast-Forward Merge"}}
-
-
-{{"git merge --ff-only" -"is a variant of"-> "git merge"}}
-
-
-{{"git pull" -"reads from"-> ".git/FETCH_HEAD"}}
-Rather than magically knowing what to merge, git pull explicitly tells git merge to integrate the commit hashes recorded in FETCH_HEAD.
-
-{{"git pull" -"executes"-> "git fetch"}}
-The first half of a pull is identical to running a standard fetch, syncing the local database.
-
-{{"git pull" -"executes"-> "git merge"}}
-By default, the second half of a pull attempts to integrate the newly fetched data into your active branch.
-
-{{"git push" -"updates"-> "Remote Repository"}}
-Sends local commits to the server, updating the remote reference.
-
-{{"git push --delete" -"variant of"-> "git push"}}
-
-
-{{"git push --tags" -"syncs with"-> "Remote Repository"}}
-
-
-{{"git push --tags" -"variant of"-> "git push"}}
-
-
-{{"git push -u" -"creates"-> "Upstream Branch"}}
-The `-u` (or `--set-upstream`) flag is the explicit command used to push a new local branch to a server AND permanently establish the linkage for the future.
-
-{{"git rebase" -"rewrites"-> "Commit Object"}}
-Copies existing commits to a new base, generating new hashes.
-
-{{"git rebase" -"updates"-> "Working Directory"}}
-Like a merge, rebasing modifies the actual files on your hard drive so you can see the newly integrated code.
-
-{{"git rebase" -"is alternative to"-> "git merge"}}
-Both commands solve the problem of integrating branches, but rebase rewrites history for a linear graph, while merge preserves the true parallel history.
-
-{{"git rebase -i" -"variant of"-> "git rebase"}}
-
-
-{{"git reflog" -"locates"-> "Dangling Commit"}}
-More specifically Dangling Commits
-
-{{"git reflog" -"tracks movement of"-> "HEAD"}}
-It is a private, local journal that records exactly where HEAD was pointing at any given time, regardless of what happened to the branches.
-
-{{"git remote" -"manages"-> "Remote Repository"}}
-It provides the interface to list, add, remove, or rename the server connections that your local project is currently tracking.
-
-{{"git reset" -"moves"-> "HEAD"}}
-The primary function of reset is to pick up the HEAD pointer (and the branch it's attached to) and drop it onto an older commit.
-
-{{"git reset" -"uses"-> "Relative Refs"}}
-You almost always combine these, telling Git to move the pointer relative to where you currently are (e.g., `git reset HEAD~2`).
-
-{{"git reset" -"clears"-> "Staging Area (Index)"}}
-The default mode (--mixed) will wipe the staging area to make it perfectly match the target commit.
-
-{{"git reset --hard" -"is a variant of"-> "git reset"}}
-
-
-{{"git reset --hard" -"clears"-> "Staging Area (Index)"}}
-In addition to destroying uncommitted work in your Working Directory, it violently wipes the Staging Area so it perfectly matches the older target commit.
-
-{{"git reset --hard" -"overwrites"-> "Working Directory"}}
-Destructively resets files to match the target commit, discarding work.
-
-{{"git reset --hard" -"can creates"-> "Dangling Commit"}}
-By forcefully moving the HEAD pointer backward, any commits that were physically "in front" of the new pointer are left behind as dangling objects.
-
-{{"git reset --soft" -"is a variant of"-> "git reset"}}
-
-
-{{"git reset --soft" -"moves"-> "HEAD"}}
-Steps back in history but keeps changes staged in the Index.
-
-{{"git restore" -"un-stages from"-> "Staging Area"}}
-When used with the `--staged` flag, it pulls a file out of the Staging Area back into the Working Directory.
-
-{{"git restore" -"discards changes in"-> "Working Directory"}}
-When used on a modified tracked file, it overwrites the local file with the version from the Index or the last Commit.
-
-{{"git revert" -"inverts"-> "Commit Object"}}
-Creates a new commit with the exact opposite changes of the target.
-
-{{"git revert" -"creates"-> "Commit Object"}}
-Instead of deleting history, it creates a brand new commit that contains the exact inverse of the changes from a previous commit.
-
-{{"git revert" -"respects"-> "Immutability"}}
-It is the safest "undo" command because it never alters existing commits, strictly adhering to the append-only nature of shared Git history.
-
-{{"git stash" -"restores baseline to"-> "HEAD"}}
-After saving your uncommitted work, it reverts your Working Directory to exactly match the last committed Snapshot.
-
-{{"git stash" -"saves state of"-> "Working Directory"}}
-Temporarily moves uncommitted work to a stack, cleaning the workspace.
-
-{{"git stash" -"saves state of"-> "Working Directory"}}
-It takes your messy, uncommitted modifications and bundles them away safely so you can switch contexts.
-
-{{"git status" -"inspects"-> "Staging Area"}}
-This command also checks the draft space to see what you have already queued up for the next save.
-
-{{"git status" -"inspects"-> "Working Directory"}}
-This command looks at your workspace to see what is different compared to the last time you saved.
-
-{{"git tag" -"creates"-> "Tag (Lightweight)"}}
-By default, running the command without flags creates a simple, static pointer to the current HEAD commit.
-
-{{"git tag -a" -"creates"-> "Tag Object (Annotated)"}}
-Using the `-a` (annotate) flag forces Git to forge a permanent, cryptographically hashed object in the `.git/objects` database.
-
-{{"git tag -a" -"variant of"-> "git tag"}}
-
-
-{{"HEAD" -"stored in"-> ".git/HEAD"}}
-Coming soon..
-
-{{"HEAD" -"points to"-> "Branch"}}
-In a normal state, HEAD is a symbolic link to a branch name.
-
-{{"HEAD" -"points to"-> "Commit Object"}}
-In a detached state, HEAD points directly to a commit hash.
-
-{{"Immutability" -"prevents editing of"-> ".git/objects"}}
-
-
-{{"Immutability" -"is enforced by"-> "SHA-1 Hash"}}
-Because an object's ID is derived directly from its content, you mathematically cannot change the content without the ID changing. This calculation fundamentally enforces immutability.
-
-{{"Local Config" -"stored in"-> ".git/config"}}
-Coming soon..
-
-{{"Local Repository" -"synonym"-> "Repository (.git)"}}
-Conceptually, the "Local Repository" refers to the entire database sitting on your personal machine, distinguishing it from the shared server.
-
-{{"Local Repository" -"synonym"-> "Repository (.git)"}}
-
-
-{{"main" -"historically known as"-> "master"}}
-In older repositories and tutorials (pre-2020), the default starting branch was named `master`. Modern Git and hosting platforms now default to `main`.
-
-{{"main" -"is a type of"-> "Tracking Branch"}}
-
-
-{{"Merge Conflicts" -"occur in"-> "Staging Area"}}
-During a conflict, the index holds 3 versions of the file (Base, Yours, Theirs).
-
-{{"origin" -"is the default"-> "Upstream Repository"}}
-When you clone a project, Git automatically creates a remote connection named origin and sets it as your primary upstream repository.
-
-{{"origin/main" -"Upstream of"-> "main"}}
-Your local branch constantly compares its own history against this tracking branch to determine if you are "ahead" or "behind."
-
-{{"origin/main" -"is a type of"-> "Remote-Tracking Branch"}}
-origin/main is a concrete example of this concept—a read-only bookmark of the server's state.
-
-{{"Packfile" -"compresses"-> "Blob Object"}}
-Stores objects efficiently using deltas to minimize disk usage.
-
-{{"Packfile" -"intentionally excludes"-> "Dangling Object"}}
-When Git builds a Packfile, it traces the DAG from your branches downward. Unreachable dangling objects are ignored and left as uncompressed "loose" objects until their 30-day timer expires.
-
-{{"pull.ff" -"modifies behavior of"-> "git pull"}}
-
-
-{{"pull.rebase" -"modifies behavior of"-> "git pull"}}
-
-
-{{"refs/remotes/" -"stored in"-> "Local Repository"}}
-The actual directory inside your .git folder where the "cached" server state lives.
-
-{{"Relative Refs" -"navigates to"-> "Commit Object"}}
-Symbols like `HEAD~1` or `HEAD^` allow you to target specific ancestor commits without needing to look up their exact SHA-1 hashes.
-
-{{"Remote Repository" -"syncs with"-> "Local Repository"}}
-The remote is a network counterpart to your local database. Commands like push and fetch move Commit Objects between these two locations.
-
-{{"Remote Repository" -"contains"-> "Tracking Branch"}}
-The server has its own branches which we track locally as read-only refs.
-
-{{"Remote-Tracking Branch" -"stored in"-> "refs/remotes/"}}
-To prevent chaos, Git physically isolates these tracking branches in this specific sub-folder so they never accidentally mix with your local branches.
-
-{{"Repository (.git)" -"stored in"-> "Working Directory"}}
-The database lives physically inside the root of your project folder (hidden by default), ensuring the history travels with the files.
-
-{{"SHA-1 Hash" -"identifies"-> "Blob Object"}}
-The raw content of a file is hashed. If two files have the exact same text, they will generate the exact same SHA-1 Hash, allowing Git to reuse the object and save space.
-
-{{"SHA-1 Hash" -"identifies"-> "Commit Object"}}
-Git uses the SHA-1 algorithm to calculate a 40-character checksum based on the commit's metadata and snapshot, ensuring it is uniquely identified.
-
-{{"SHA-1 Hash" -"identifies"-> "Tag Object (Annotated)"}}
-Annotated tags are stored in the database with their own message and tagger metadata, which are hashed to create a unique ID.
-
-{{"SHA-1 Hash" -"identifies"-> "Tree Object"}}
-The folder structure is hashed based on the list of files (Blobs) and subfolders it contains.
-
-{{"Snapshot" -"is represented by"-> "Tree Object"}}
-Coming soon..
-
-{{"Staging Area" -"stored in"-> ".git/index (Index)"}}
-This relationship connects the abstract concept to the physical reality. The Index is actually a single binary file located at `.git/index` on your hard drive, which contains the list of all tracked files and their checksums.
-
-{{"Staging Area" -"concept of"-> "Staging Area (Index)"}}
-Coming soon..
-
-{{"Tag (Lightweight)" -"behaves like"-> "Branch"}}
-Structurally, it is identical to a branch (a file containing a hash), with the sole exception that it is strictly read-only and never moves.
-
-{{"Tree" -"implemented by"-> "Tree Object"}}
-Coming soon..
-
-{{"Tree Object" -"references"-> "Blob Object"}}
-Maps a filename to a Blob hash.
-
-{{"Upstream Branch" -"links"-> "Branch"}}
-
-
-{{"Upstream Branch" -"links"-> "Remote-Tracking Branch"}}
-
-
-{{"Upstream Repository" -"source of truth of a"-> "Local Repository"}}
-
-
 {{"❓ How to bundle commits by date?" -"solved by"-> "git reset --soft"}}
 Assuming the commits that will be bundled are the last ones commited, also assuming those commits were not pushed and there's no extra undesired commit between the ones you want to bundle, this mean you can use a pointer manipulation instead of a rebase. Here are the exact steps to execute this.
 
@@ -1179,12 +753,6 @@ Now, you will move your branch pointer back to that base commit, while leaving a
 Finally, wrap all those staged changes into a single new commit:
 
 [git commit](<node:git commit>)
-
-{{"git push --force-with-lease" -"safer than"-> "git push --force"}}
-
-
-{{"git push --force" -"variant of"-> "git push"}}
-
 
 {{"❓ How to bundle commits by date?" -"solved by"-> "git rebase"}}
 As the commits to be bundled were sent to the remote server already, we must introduce a critical safety layer into our workflow. Because pushing to a remote repository makes your local history public, altering it means we are now rewriting public record.
@@ -1280,8 +848,499 @@ Your goal is to untangle specific commits into clean, logical units.
 
 Using [git add -p](<node:git add -p>) (patch mode) enforces the philosophy of the [Atomic Commits](<node:Atomic Commits>), i.e. ommits should do exactly one thing to make code reviews readable and future rollbacks safe.
 
+{{"❓ Pull vs Fetch" -"solved by"-> "git pull"}}
+Assuming you want to integrate the remote changes right away (and not analize them first) and also assuming you have a "clean" Working Directory (all changes committed), you can check the following solution:
+
+[git pull](<node:git pull>)
+
+{{"❓ Pull vs Fetch" -"solved by"-> "git fetch"}}
+To download remote changes and analyze them before integrating into your local branch, check the following solution:
+
+[git fetch](<node:git fetch>)
+
+{{"❓ Pull vs Fetch" -"solved by"-> "git commit"}}
+As you want to save your currently changes before integrating remote changes, follow the pattern [git commit](<node:git commit>) -> [git fetch](<node:git fetch>) -> [git merge](<node:git merge>).
+
+{{"❓ Pull vs Fetch" -"solved by"-> "git reset"}}
+As you don't want to keep your local changes, you can discard them with [git reset](<node:git reset>), and assuming no other changes were made in the branch, you can run [git pull](<node:git pull>) to download and integrate remote changes.
+
+{{"❓ Pull vs Fetch" -"solved by"-> "git stash"}}
+To temporary "hide" your local changes, you can use [git stash](<node:git stash>), then use [git fetch](<node:git fetch>) to analyze changes in the remote branch.
+
+{{"❓ Pull vs Fetch" -"solved by"-> "Feature Branching"}}
+When multiple people work directly on a shared branch, the repository acts like a single, highly crowded workbench. You are constantly having to move your half-built changes aside (stashing) just to accept the latest changes from someone else (pulling), which is prone to errors.
+
+Adopt the following workflow to work in isolation and have controlled integrations:
+
+[Feature Branching Workflow](<node:Feature Branching>)
+
+{{"❓ Undo last commits" -"solved by"-> "git commit --amend"}}
+If you just want to include more changes into the last commit, check the following node for a solution:
+
+[git commit --amend](<node:git commit --amend>)
+
+{{"❓ Undo last commits" -"solved by"-> "git push -f"}}
+If the commit you want to change is already pushed, but rewriting history is safe, then check the following node for a solution:
+
+[git push -f](<node:git push -f>)
+
+{{"❓ Undo last commits" -"solved by"-> "git reset"}}
+If the history can be changed, check the following node for a solution:
+
+[git reset](<node:git reset>)
+
+{{"❓ Undo last commits" -"solved by"-> "git reset --hard"}}
+To undo the commit and permanently delete commit's changes, check the following node for a solution:
+
+[git reset --hard](<node:git reset --hard>)
+
+{{"❓ Undo last commits" -"solved by"-> "git reset --soft"}}
+If you want to undo the commit and keeep the changes in your index, check the following node for a solution:
+
+[git reset --soft](<node:git reset --soft>)
+
+{{"❓ Undo last commits" -"solved by"-> "git revert"}}
+Assuming you have already pushed these commits to a remote server in a branch others are working on, check the following node for a solution:
+
+[git revert](<node:git revert>)
+
+{{"Atomic Commits" -"facilitates"-> "git cherry-pick"}}
+Small, focused commits are incredibly easy to copy-paste onto other branches compared to massive "end of day" commits.
+
+{{"Atomic Commits" -"facilitates"-> "git revert"}}
+If a commit does only one specific thing (atomic), reverting it later will cleanly undo that feature without breaking unrelated code.
+
+{{"Blob Object" -"stored in"-> ".git/objects/"}}
+
+
+{{"Branch" -"points to"-> "Commit Object"}}
+A branch is just a text file containing the hash of the latest commit.
+
+{{"Branch" -"stored in"-> "refs/heads/"}}
+
+
+{{"Commit Object" -"stored in"-> ".git/objects/"}}
+Every saved snapshot is compressed, hashed, and physically stored inside the `.git/objects` subfolder of the repository.
+
+{{"Commit Object" -"points to"-> "Commit Object"}}
+Each commit (except the first) points to its parent, forming the DAG.
+
+{{"Commit Object" -"contains"-> "Snapshot"}}
+Every commit holds exactly one snapshot. The commit acts as the envelope (with the stamp and address), and the snapshot is the letter inside.
+
+{{"Commit Object" -"contains"-> "Tree Object"}}
+Coming soon..
+
+{{"Commit Object" -"requires"-> "user.email"}}
+Similar to the name, an email is mandatory metadata for every commit to ensure the history can be attributed to a real person.
+
+{{"Commit Object" -"requires"-> "user.name"}}
+Git will not let you save a commit without an author name. It needs this to permanently sign the work.
+
+{{"Commit Object" -"forms the data structure"-> "DAG (Directed Acyclic Graph)"}}
+The Directed Acyclic Graph is the structure formed by the parent linkages.
+
+{{"Dangling Commit" -"contains"-> "Dangling Tree"}}
+If a Dangling Commit is the only object in the database referencing a specific Tree Object, that Tree will also effectively become dangling once the commit is purged.
+
+{{">>Data Zones" -""-> ">>Objects"}}
+
+
+{{"Feature Branching" -"relies on"-> "Branch"}}
+The entire methodology is built on Git's ability to create lightweight, disposable pointers for parallel development.
+
+{{"Feature Branching" -"avoids"-> "Merge Conflicts"}}
+(Or rather, delays and isolates them). It prevents developers from constantly stepping on each other's toes in the main branch on every single commit.
+
+{{"git add" -"calculates the"-> "Blob Object"}}
+Before anything is moved, Git performs a hash calculation. `git add` **calculates the SHA-1 hash** of the file’s current content to create a **Blob Object**. If the file's content has changed since the last add, a new unique hash is generated to represent that specific version of the data.
+
+{{"git add" -"updates"-> "Staging Area"}}
+This command takes the file as it looks right now in your workspace and copies that version into the draft space (Index), making it ready to be saved.
+
+{{"git add" -"add Blob and file path in"-> "Staging Area"}}
+Once the Blob is created, Git must remember which file it belongs to. git add **records the Blob's hash and the file's path** together within the **Staging Area (Index)**. This creates the link between the "untyped" data in the Blob and the actual filename used in your directory structure.
+
+{{"git add" -"promotes changes from"-> "Working Directory"}}
+When you run git add, you are **promoting changes** from your Working Directory (the files you see and edit) to the Staging Area. This signals to Git that these specific modifications are ready to be packaged into the next snapshot of the project.
+
+{{"git add" -"can create"-> "Dangling Blob"}}
+If you stage a file, edit it, and stage it again, the first generated Blob object loses its reference in the Staging Area and becomes dangling.
+
 {{"git add -p" -"variant of"-> "git add"}}
 
 
 {{"git add -p" -"enables"-> "Atomic Commits"}}
 
+
+{{"git bisect" -"navigates"-> "DAG (Directed Acyclic Graph)"}}
+
+
+{{"git branch" -"creates"-> "Branch"}}
+Creates a new pointer to the current commit.
+
+{{"git branch -d" -"variant of"-> "git branch"}}
+
+
+{{"git branch -D" -"variant of"-> "git branch"}}
+
+
+{{"git branch -r" -"lists"-> "refs/remotes/"}}
+The specific inspection command used to view all your Remote-Tracking Branches without showing local branches.
+
+{{"git branch -vv" -"inspects"-> "Upstream Branch"}}
+This specific flag (very verbose) lists all your local branches and explicitly prints the name of the upstream branch they are tethered to, if one exists.
+
+{{"git checkout" -"move"-> "HEAD"}}
+Moves the HEAD pointer to the specified branch.
+
+{{"Working Directory" -"reflects state pointed by"-> "HEAD"}}
+
+
+{{"git checkout [hash]" -"triggers"-> "Detached HEAD"}}
+Moving HEAD to a specific commit disconnects it from any branch.
+
+{{"git cherry-pick" -"creates new"-> "Commit Object"}}
+
+
+{{"git clone" -"downloads from"-> "Remote Repository"}}
+Sets up the 'origin' configuration pointing to the URL.
+
+{{"git clone" -"creates"-> "Repository"}}
+
+
+{{"git clone" -"configures"-> "origin"}}
+
+
+{{"git clone" -"populates"-> "Working Directory"}}
+
+
+{{"git commit" -"creates"-> "Commit Object"}}
+This action freezes the current Staging Area into a permanent object in the database, generating a unique ID (hash) for it.
+
+{{"git commit" -"consumes"-> "Staging Area"}}
+
+
+{{"git commit --amend" -"variant of"-> "git commit"}}
+
+
+{{"git commit --amend" -"replaces"-> "Commit Object"}}
+It takes the current Staging Area and the parent's metadata to forge a completely new Commit Object, making the old one obsolete.
+
+{{"git commit --amend" -"respects"-> "Immutability"}}
+Even though it feels like you are editing a save file, the command strictly obeys Git's read-only database rules by leaving the original object structure intact and building a completely new one.
+
+{{"git commit --amend" -"can creates"-> "Dangling Commit"}}
+Because amending replaces the previous tip of the branch with a new commit, the original, replaced commit is instantly orphaned and becomes dangling.
+
+{{"git commit --no-verify" -"bypasses"-> ".git/hooks"}}
+This command flag allows a user to intentionally skip the client-side commit hooks during an emergency fix.
+
+{{"git diff" -"compares"-> "Working Directory"}}
+By default (with no extra flags), this command shows all un-staged modifications by comparing your active workspace directly against the Index.
+
+{{"git diff" -"compares"-> "Staging Area"}}
+
+
+{{"git fetch" -"creates / updates"-> ".git/FETCH_HEAD"}}
+Logs the exact commit hashes that were just downloaded. This is the crucial, hidden bridge file used by git pull.
+
+{{"git fetch" -"updates"-> "origin/main"}}
+Moves this specific tracking pointer forward to perfectly mirror the new state of the server.
+
+{{"git fetch" -"downloads from"-> "Remote Repository"}}
+Retrieves new commits and data from the remote server, but strictly stops there.
+
+{{"git fetch" -"updates"-> "Tracking Branch"}}
+Downloads data and moves 'origin/main' to match the server.
+
+{{"git fetch --prune" -"variant of"-> "git fetch"}}
+
+
+{{"git gc" -"cleans up"-> "git reflog"}}
+
+
+{{"git gc" -"permanently deletes"-> "Dangling Object"}}
+When run, the garbage collector scans for objects that have been completely unreachable for longer than the 30-day grace period, and physically deletes them from your hard drive.
+
+{{"git gc" -"compresses into"-> "Packfile"}}
+During its optimization routine, the garbage collector takes all "live" (reachable) loose objects and squashes them into a highly efficient Packfile.
+
+{{"git init" -"creates"-> "Repository"}}
+Running this command physically generates the database folder on your computer. Before this, you just have files; after this, you have a Git project.
+
+{{"git log" -"reads"-> "Commit Object"}}
+It extracts and displays the metadata stored inside the commit (author, date, message, and hash) without altering it.
+
+{{"git log" -"traverses"-> "DAG (Directed Acyclic Graph)"}}
+To build the timeline, the command strictly follows the parent-pointers mathematically linking the commits together from newest to oldest.
+
+{{"git merge" -"resolves via"-> "Merge Conflicts"}}
+If automatic merging fails, the user must manually resolve the overlapping edits.
+
+{{"git merge" -"combines"-> "origin/main"}}
+Takes the isolated tracking branch and attempts to fuse its history into your current local main.
+
+{{"git merge" -"utilizes"-> "Staging Area"}}
+If the merge results in a conflict, Git uses the Index to store the base, local, and remote versions of the file until you resolve it.
+
+{{"git merge --ff-only" -"allow only"-> "Fast-Forward Merge"}}
+
+
+{{"git merge --ff-only" -"is a variant of"-> "git merge"}}
+
+
+{{"git pull" -"reads from"-> ".git/FETCH_HEAD"}}
+Rather than magically knowing what to merge, git pull explicitly tells git merge to integrate the commit hashes recorded in FETCH_HEAD.
+
+{{"git pull" -"executes"-> "git fetch"}}
+The first half of a pull is identical to running a standard fetch, syncing the local database.
+
+{{"git pull" -"executes"-> "git merge"}}
+By default, the second half of a pull attempts to integrate the newly fetched data into your active branch.
+
+{{"git push" -"updates"-> "Remote Repository"}}
+Sends local commits to the server, updating the remote reference.
+
+{{"git push --delete" -"variant of"-> "git push"}}
+
+
+{{"git push --force" -"variant of"-> "git push"}}
+
+
+{{"git push --force-with-lease" -"safer than"-> "git push --force"}}
+
+
+{{"git push --tags" -"syncs with"-> "Remote Repository"}}
+
+
+{{"git push --tags" -"variant of"-> "git push"}}
+
+
+{{"git push -u" -"creates"-> "Upstream Branch"}}
+The `-u` (or `--set-upstream`) flag is the explicit command used to push a new local branch to a server AND permanently establish the linkage for the future.
+
+{{"git rebase" -"rearranges"-> "Commit Object"}}
+Copies existing commits to a new base, generating new hashes.
+
+{{"git rebase" -"is alternative to"-> "git merge"}}
+Both commands solve the problem of integrating branches, but rebase rewrites history for a linear graph, while merge preserves the true parallel history.
+
+{{"git rebase -i" -"variant of"-> "git rebase"}}
+
+
+{{"git reflog" -"locates"-> "Dangling Commit"}}
+More specifically Dangling Commits
+
+{{"git reflog" -"tracks movement of"-> "HEAD"}}
+It is a private, local journal that records exactly where HEAD was pointing at any given time, regardless of what happened to the branches.
+
+{{"git remote" -"manages"-> "Remote Repository"}}
+It provides the interface to list, add, remove, or rename the server connections that your local project is currently tracking.
+
+{{"git reset" -"moves"-> "Branch"}}
+The primary function of reset is to pick up the HEAD pointer (and the branch it's attached to) and drop it onto an older commit.
+
+{{"git reset" -"uses"-> "Relative Refs"}}
+You almost always combine these, telling Git to move the pointer relative to where you currently are (e.g., `git reset HEAD~2`).
+
+{{"git reset" -"clears"-> "Staging Area"}}
+The default mode (--mixed) will wipe the staging area to make it perfectly match the target commit.
+
+{{"git reset --hard" -"clears"-> "Staging Area"}}
+In addition to destroying uncommitted work in your Working Directory, it violently wipes the Staging Area so it perfectly matches the older target commit.
+
+{{"git reset --hard" -"overwrites"-> "Working Directory"}}
+Destructively resets files to match the target commit, discarding work.
+
+{{"git reset --hard" -"can creates"-> "Dangling Commit"}}
+By forcefully moving the HEAD pointer backward, any commits that were physically "in front" of the new pointer are left behind as dangling objects.
+
+{{"git reset --hard" -"moves"-> "Branch"}}
+
+
+{{"git reset --soft" -"moves"-> "Branch"}}
+Steps back in history but keeps changes staged in the Index.
+
+{{"git restore" -"un-stages from"-> "Staging Area"}}
+When used with the `--staged` flag, it pulls a file out of the Staging Area back into the Working Directory.
+
+{{"git restore" -"discards changes in"-> "Working Directory"}}
+When used on a modified tracked file, it overwrites the local file with the version from the Index or the last Commit.
+
+{{"git revert" -"inverts"-> "Commit Object"}}
+Creates a new commit with the exact opposite changes of the target.
+
+{{"git revert" -"creates"-> "Commit Object"}}
+Instead of deleting history, it creates a brand new commit that contains the exact inverse of the changes from a previous commit.
+
+{{"git revert" -"respects"-> "Immutability"}}
+It is the safest "undo" command because it never alters existing commits, strictly adhering to the append-only nature of shared Git history.
+
+{{"git stash" -"restores baseline to"-> "HEAD"}}
+After saving your uncommitted work, it reverts your Working Directory to exactly match the last committed Snapshot.
+
+{{"git stash" -"saves state of"-> "Working Directory"}}
+Temporarily moves uncommitted work to a stack, cleaning the workspace.
+
+{{"git stash" -"saves state of"-> "Working Directory"}}
+It takes your messy, uncommitted modifications and bundles them away safely so you can switch contexts.
+
+{{"git status" -"inspects"-> "Staging Area"}}
+This command also checks the draft space to see what you have already queued up for the next save.
+
+{{"git status" -"inspects"-> "Working Directory"}}
+This command looks at your workspace to see what is different compared to the last time you saved.
+
+{{"git tag" -"creates"-> "Tag (Lightweight)"}}
+By default, running the command without flags creates a simple, static pointer to the current HEAD commit.
+
+{{"git tag -a" -"creates"-> "Tag Object (Annotated)"}}
+Using the `-a` (annotate) flag forces Git to forge a permanent, cryptographically hashed object in the `.git/objects` database.
+
+{{"git tag -a" -"variant of"-> "git tag"}}
+
+
+{{"HEAD" -"stored in"-> ".git/HEAD"}}
+Coming soon..
+
+{{"HEAD" -"points to"-> "Branch"}}
+In a normal state, HEAD is a symbolic link to a branch name.
+
+{{"HEAD" -"points to"-> "Commit Object"}}
+In a detached state, HEAD points directly to a commit hash.
+
+{{"Immutability" -"prevents editing of"-> ".git/objects/"}}
+
+
+{{"Immutability" -"is enforced by"-> "SHA-1 Hash"}}
+Because an object's ID is derived directly from its content, you mathematically cannot change the content without the ID changing. This calculation fundamentally enforces immutability.
+
+{{"Immutability" -"prevents editing of"-> ">>Objects"}}
+
+
+{{"Local Config" -"stored in"-> ".git/config"}}
+Coming soon..
+
+{{"Local Repository" -"synonym"-> "Repository"}}
+Conceptually, the "Local Repository" refers to the entire database sitting on your personal machine, distinguishing it from the shared server.
+
+{{"main" -"historically known as"-> "master"}}
+In older repositories and tutorials (pre-2020), the default starting branch was named `master`. Modern Git and hosting platforms now default to `main`.
+
+{{"main" -"is a type of"-> "Tracking Branch"}}
+
+
+{{"Merge Conflicts" -"occur in"-> "Staging Area"}}
+During a conflict, the index holds 3 versions of the file (Base, Yours, Theirs).
+
+{{"origin" -"is the default"-> "Upstream Repository"}}
+When you clone a project, Git automatically creates a remote connection named origin and sets it as your primary upstream repository.
+
+{{"origin/main" -"Upstream of"-> "main"}}
+Your local branch constantly compares its own history against this tracking branch to determine if you are "ahead" or "behind."
+
+{{"origin/main" -"is a type of"-> "Remote-Tracking Branch"}}
+origin/main is a concrete example of this concept—a read-only bookmark of the server's state.
+
+{{"Packfile" -"compresses"-> "Blob Object"}}
+Stores objects efficiently using deltas to minimize disk usage.
+
+{{"Packfile" -"intentionally excludes"-> "Dangling Object"}}
+When Git builds a Packfile, it traces the DAG from your branches downward. Unreachable dangling objects are ignored and left as uncompressed "loose" objects until their 30-day timer expires.
+
+{{"pull.ff" -"modifies behavior of"-> "git pull"}}
+
+
+{{"pull.rebase" -"modifies behavior of"-> "git pull"}}
+
+
+{{">>References" -""-> ">>Objects"}}
+
+
+{{"refs/remotes/" -"stored in"-> "Repository"}}
+The actual directory inside your .git folder where the "cached" server state lives.
+
+{{"Relative Refs" -"navigates to"-> "Commit Object"}}
+Symbols like `HEAD~1` or `HEAD^` allow you to target specific ancestor commits without needing to look up their exact SHA-1 hashes.
+
+{{"Remote Repository" -"syncs with"-> "Repository"}}
+The remote is a network counterpart to your local database. Commands like push and fetch move Commit Objects between these two locations.
+
+{{"Remote Repository" -"contains"-> "Tracking Branch"}}
+The server has its own branches which we track locally as read-only refs.
+
+{{"Remote-Tracking Branch" -"stored in"-> "refs/remotes/"}}
+To prevent chaos, Git physically isolates these tracking branches in this specific sub-folder so they never accidentally mix with your local branches.
+
+{{"Repository" -"implemented as"-> ".git directory"}}
+
+
+{{"Repository" -"stored in"-> "Working Directory"}}
+The database lives physically inside the root of your project folder (hidden by default), ensuring the history travels with the files.
+
+{{"SHA-1 Hash" -"identifies"-> "Blob Object"}}
+The raw content of a file is hashed. If two files have the exact same text, they will generate the exact same SHA-1 Hash, allowing Git to reuse the object and save space.
+
+{{"SHA-1 Hash" -"identifies"-> "Commit Object"}}
+Git uses the SHA-1 algorithm to calculate a 40-character checksum based on the commit's metadata and snapshot, ensuring it is uniquely identified.
+
+{{"SHA-1 Hash" -"identifies"-> "Tag Object (Annotated)"}}
+Annotated tags are stored in the database with their own message and tagger metadata, which are hashed to create a unique ID.
+
+{{"SHA-1 Hash" -"identifies"-> "Tree Object"}}
+The folder structure is hashed based on the list of files (Blobs) and subfolders it contains.
+
+{{"Snapshot" -"is represented by"-> "Tree Object"}}
+Coming soon..
+
+{{"Staging Area" -"formerly known as"-> "Cache"}}
+In the very early days of Git, the staging area was called the "Cache" because it cached the file contents before writing them to the database. You still see this legacy name in commands like `git diff --cached` (which does the same thing as `git diff --staged`).
+
+{{"Staging Area" -"represents proposed"-> "Snapshot"}}
+The Staging Area acts as a preview or a draft. Whatever is in the Staging Area right now is exactly what the Snapshot will look like if you run the commit command.
+
+{{"Staging Area" -"implemented as"-> ".git/index"}}
+This relationship connects the abstract concept to the physical reality. The Index is actually a single binary file located at `.git/index` on your hard drive, which contains the list of all tracked files and their checksums.
+
+{{"Staging Area" -"concept of"-> "Staging Area"}}
+Coming soon..
+
+{{"Tag (Lightweight)" -"behaves like"-> "Branch"}}
+Structurally, it is identical to a branch (a file containing a hash), with the sole exception that it is strictly read-only and never moves.
+
+{{"Tag (Lightweight)" -"stored in"-> "refs/tags/"}}
+
+
+{{"Tag Object (Annotated)" -"references"-> "Commit Object"}}
+
+
+{{"Tag Object (Annotated)" -"stored in"-> ".git/objects/"}}
+
+
+{{"Tree" -"implemented by"-> "Tree Object"}}
+Coming soon..
+
+{{"Tree Object" -"references"-> "Blob Object"}}
+Maps a filename to a Blob hash.
+
+{{"Tree Object" -"stored in"-> ".git/objects/"}}
+
+
+{{"Upstream Branch" -"links"-> "Branch"}}
+
+
+{{"Upstream Branch" -"links"-> "Remote-Tracking Branch"}}
+
+
+{{"Upstream Repository" -"source of truth of a"-> "Local Repository"}}
+
+
+{{"git checkout -b" -"move"-> "HEAD"}}
+
+
+{{"git checkout -b" -"create"-> "Branch"}}
+Gemini
+Gemini response
+Gemini in Drive doesn’t support text files
+Gemini in Workspace can make mistakes. Learn more
